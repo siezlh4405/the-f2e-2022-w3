@@ -1,0 +1,35 @@
+@import './variable';
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10.4rem;
+  height: 6.4rem;
+  border: 3px solid $color-black-dark;
+  border-radius: 1rem;
+  transition: all .3s;
+  cursor: pointer;
+
+  @include h4();
+
+  &_disabled {
+    border: 3px solid $color-gray-light4 !important;
+    background: $color-gray-light3 !important;
+    color: $color-gray-light4 !important;
+    pointer-events: none;
+  }
+
+  &_primary {
+    background-color: $color-primary;
+  }
+
+  &_secondary {
+    background-color: $color-secondary;
+  }
+
+  &:hover {
+    box-shadow: 6px 6px 0 3px;
+  }
+
+}

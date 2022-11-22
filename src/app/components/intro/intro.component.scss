@@ -1,0 +1,68 @@
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/components';
+
+.intro {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 8rem;
+  background-color: $background-color;
+  overflow: hidden;
+  z-index: 200;
+  // background: url('../../../assets/images/bgflame.png'), $background-color;
+  // background-repeat: no-repeat;
+  // background-position-x: 60%;
+  // background-position: 54% 22.4rem;
+  // background-size: 114%;
+
+
+  &__background-image {
+    position: absolute;
+    pointer-events: none;
+    left: -106px;
+    bottom: -248px;
+    width: 114%;
+    z-index: 100;
+  }
+
+  &__h1 {
+    position: relative;
+    margin-bottom: 4rem;
+    z-index: 200;
+    @include h1();
+  }
+
+  &__h4 {
+    position: relative;
+    margin-bottom: 10rem;
+    z-index: 200;
+    @include h4();
+  }
+
+  &__text {
+    position: relative;
+    margin-bottom: 6rem;
+    z-index: 200;
+    @include h3();
+  }
+
+  &__box {
+    position: relative;
+    width: 40rem;
+    margin: 0 auto;
+    z-index: 200;
+  }
+
+  &__btn {
+    position: relative;
+    width: 30rem;
+    height: 8.3rem;
+    margin: 0 auto;
+    z-index: 200;
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+  }
+}
