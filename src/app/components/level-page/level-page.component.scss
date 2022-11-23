@@ -1,0 +1,142 @@
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/components';
+
+.level {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 10rem 10rem 0 10rem;
+  background-color: $background-color;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/bgmountain.png');
+    background-repeat: no-repeat;
+    background-size: 100% 54vh;
+    background-position-y: bottom;
+  }
+
+  &__backto {
+    position: absolute;
+    top: 3.7rem;
+    left: 10rem;
+    width: 4rem;
+    height: 4rem;
+    background-image: url('../../../assets/images/back.png');
+    background-size: 100%;
+  }
+
+  &__h3 {
+    margin-top: 3rem;
+    @include h3();
+  }
+}
+
+.step {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &_1 {
+    position: absolute;
+    bottom: 40.8vh;
+    // left: 2.5rem;
+    left: 2.02%;
+  }
+
+  &_2 {
+    position: absolute;
+    bottom: 31vh;
+    // left: 31.8rem;
+    left: 25.65%;
+  }
+
+  &_3 {
+    position: absolute;
+    bottom: 52.2vh;
+    // left: 64.3rem;
+    left: 51.85%;
+  }
+
+  &_4 {
+    position: absolute;
+    bottom: 35.3vh;
+    // left: 96.4rem;
+    left: 77.74%;
+  }
+
+  &__question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24.1rem;
+    height: 9.4rem;
+    margin-top: -2rem;
+    margin-bottom: 3.2rem;
+    border: 3px solid $color-black-dark;
+    border-radius: 1rem;
+    background-color: $color-white;
+  }
+
+  &__lock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__text {
+    @include h4();
+  }
+
+  &__triangle {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1.7rem 3rem 1.7rem;;
+    border-color: transparent transparent $color-black-dark transparent;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 1.6rem;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 1.3rem 2.2rem 1.3rem;
+      border-color: transparent transparent $color-secondary transparent;
+    }
+  }
+
+  &__lock {
+    visibility: hidden;
+  }
+
+  &_lock &__user, &_lock &__lock {
+    visibility: visible;
+  }
+
+  &_lock &__question {
+    border: 3px solid $color-gray-light4;
+    background-color: $color-gray-light3;
+  }
+
+  &_lock &__text {
+    color: $color-gray-light4;
+  }
+
+  &_lock &__triangle {
+    border-color: transparent transparent $color-gray-light4 transparent;
+
+    &:after {
+      border-color: transparent transparent $color-gray-light3 transparent;
+    }
+  }
+}
