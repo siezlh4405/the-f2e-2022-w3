@@ -20,6 +20,27 @@
   font-weight: 400;
   font-size: 3.2rem;
   line-height: 160%;
-  color: $color-black-dark;;
+  color: $color-black-dark;
   text-align: center;
+}
+
+@mixin title {
+  font-weight: 400;
+  font-size: 2.4rem;
+  color: $color-white;
+  line-height: 160%;
+}
+
+@mixin sub-title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 160%;
+  color: $color-black-dark;;
+}
+
+@mixin small-title {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 180%;
+  color: $color-black-dark;;
 }
