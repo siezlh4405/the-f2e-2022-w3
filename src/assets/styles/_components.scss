@@ -1,4 +1,5 @@
 @import './variable';
+@import './mixins';
 
 .btn {
   display: flex;
@@ -6,11 +7,11 @@
   align-items: center;
   width: 10.4rem;
   height: 6.4rem;
-  border: 3px solid $color-black-dark;
   border-radius: 1rem;
   transition: all .3s;
   cursor: pointer;
 
+  @include regular-border();
   @include h4();
 
   &_test {
@@ -43,6 +44,12 @@
     background-color: $background-color;
   }
 
+  &_popup {
+    width: 17.2rem;
+    height: 6.4rem;
+    font-size: 2rem;
+  }
+
   &:hover {
     box-shadow: 6px 6px 0 3px;
   }
@@ -53,9 +60,10 @@
   margin-bottom: 2.3rem;
 
   &__title-box {
+    @include regular-border();
+
     width: fit-content;
     padding: .8rem 2rem;
-    border: 3px solid $color-black-dark;
     border-radius: 8px 8px 0px 0px;
     background-color: $color-primary;
   }
@@ -66,10 +74,11 @@
   }
 
   &__content {
+    @include regular-border();
+
     width: 100%;
     padding: 2rem;
     margin-top: -0.8rem;
-    border: 3px solid $color-black-dark;
     border-radius: 8px;
     background-color: $color-white;
   }
@@ -79,11 +88,34 @@
   }
 }
 
+.scrum {
+  width: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__h3 {
+    @include h3();
+  }
+
+  &__container {
+    width: 100%;
+  }
+
+  &__margin-top {
+    margin-top: 3.6rem;
+  }
+}
+
 .card1 {
+  @include regular-border();
+
   width: 39.7rem;
   min-height: 39rem;
   padding: 2.4rem 2.4rem 1rem 2.4rem;
-  border: 3px solid $color-black-dark;
   border-radius: 8px;
   box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85);
   background-color: $color-blue-dark1;
@@ -111,14 +143,14 @@
 
   &__mark-title {
     @include sub-title();
+    @include regular-border();
 
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 4.8rem;
+    min-height: 4.8rem;
     margin-top: -2.9rem;
-    border: 3px solid $color-black-dark;
     border-radius: 8px;
     text-align: center;
     background: $color-white;
@@ -164,9 +196,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 1.6rem .8rem;
     width: 31.6rem;
-    height: 8.4rem;
+    min-height: 8.4rem;
     background: $color-blue-dark1;
     border-radius: 8px;
   }
@@ -193,5 +225,124 @@
   &_no-border &__ul {
     padding: 0;
     margin-top: .8rem;
+  }
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color-black-dark, .7);
+  opacity: 0;
+  pointer-events: none;
+  transform: all .3s;
+
+  &__container {
+    @include regular-border();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48rem;
+    height: 30rem;
+    padding: 4.5rem 5.7rem 4rem 5.7rem;
+    border-radius: 1rem;
+    background-color: $background-color;
+    transition: all .3s;
+  }
+
+  &_show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &_show-animation {
+    animation: background-show;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+
+  &_pass-animation {
+    animation: popup-pass infinite;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+
+  &__error {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    background-image: url('../images/close-error.png');
+    background-size: 100% 100%;
+  }
+
+  &__pass {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    background-image: url('../images/passed.png');
+    background-size: 100% 100%;
+  }
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+  }
+
+  &__title {
+    @include title();
+
+    margin-bottom: .3rem;
+    color: $color-black-dark;
+  }
+
+  &__sub-title {
+    @include sub-title();
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@keyframes background-show {
+  0%   {
+    transform: scale(-0.5);
+  }
+  25%  {
+    transform: rotate(5deg) translate(-50%, -50%);
+  }
+  50%  {
+    transform: rotate(-5deg) translate(-50%, -50%);
+  }
+  75%  {
+    transform: rotate(5deg) translate(-50%, -50%);
+  }
+  100% {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+}
+
+@keyframes popup-pass {
+  0%  {
+    transform: scale(1);
+  }
+  50%  {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }

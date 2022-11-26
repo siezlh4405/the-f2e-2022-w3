@@ -1,0 +1,112 @@
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/components';
+
+$user-width: 19.3rem;
+
+.member-conversation {
+  width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    &:nth-child(even) {
+      justify-content: flex-end;
+    }
+  }
+
+  &__user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: flex-end;
+    min-width: $user-width;
+    padding-right: 1rem;
+  }
+
+  &__dialog {
+    @include regular-border();
+
+    position: relative;
+    min-width: 25rem;
+    max-width: calc(100% - (#{$user-width} * 2));
+    min-height: 8rem;
+    border-radius: 8px;
+    padding: 3.2rem 1.9rem;
+    margin-bottom: 3rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1.9rem;
+      left: 1.6rem;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 1.6rem 2.4rem 0 0;
+      border-color: $color-black-dark transparent transparent transparent;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1.3rem;
+      left: 1.9rem;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 1.4rem 2rem 0 0;
+      border-color: $color-white transparent transparent transparent;
+    }
+  }
+
+  &__dialog-text {
+    @include sub-title();
+    background-color: $color-white;
+  }
+
+  &__photo {
+    @include regular-border();
+
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 50%;
+  }
+
+  &__item:nth-child(even) &__user {
+    order: 2;
+  }
+
+  &__item:nth-child(even) &__dialog {
+    order: 1;
+
+    &::before {
+      left: unset;
+      right: 1.6rem;
+      border-width: 0 2.4rem 1.6rem 0;
+      border-color: transparent $color-black-dark transparent transparent;
+    }
+
+    &::after {
+      left: unset;
+      right: 1.9rem;
+      border-width: 0 2rem 1.4rem  0;
+      border-color: transparent $color-white transparent transparent;
+    }
+  }
+
+  &__title {
+    @include sub-title();
+  }
+
+  &__sub-title {
+    @include small-title();
+  }
+}

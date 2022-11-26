@@ -44,3 +44,7 @@
   line-height: 180%;
   color: $color-black-dark;;
 }
+
+@mixin regular-border {
+  border: 3px solid $color-black-dark;
+}
