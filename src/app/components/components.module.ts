@@ -8,8 +8,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrumMemberComponent } from './scrum-member/scrum-member.component';
 import { ScrumWorkComponent } from './scrum-work/scrum-work.component';
 import { ScrumToolComponent } from './scrum-tool/scrum-tool.component';
-
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,8 @@ import { ScrumToolComponent } from './scrum-tool/scrum-tool.component';
   ],
   imports: [
     CommonModule,
-    DragDropModule
+    DragDropModule,
+    RouterModule
   ]
 })
 export class ComponentsModule { }

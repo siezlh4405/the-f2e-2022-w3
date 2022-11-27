@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-scrum-work',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScrumWorkComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  goNext(): void {
+    this.cookieService.set('level', '4');
+    this.router.navigate(['/']);
   }
 
 }

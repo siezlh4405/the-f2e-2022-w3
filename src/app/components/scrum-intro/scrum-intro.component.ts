@@ -1,5 +1,6 @@
 import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-scrum-intro',
@@ -21,7 +22,9 @@ isCanStartTest = false;
 isTestPassed = false;
 isTesting = false;
 
-  constructor() { }
+  constructor(
+    private cookieService: CookieService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -56,6 +59,7 @@ isTesting = false;
 
         if (this.isTestPassed) {
           this.isShowPassedPopup = true;
+          this.cookieService.set('level', '2');
         }
       }
     } else {
@@ -69,5 +73,16 @@ isTesting = false;
     }
 
     return false;
+  }
+
+  goToReview(): void {
+    this.isShowErrorPopup = false;
+    this.isTesting = false;
+    this.scrumDragQuestions = ['在固定時間內完成被交付的任務', '整個團隊代辦事項的清單', 'Scrum Master (SM)', '開發團隊 (DV)', '產品負責人 (PO)'];
+    this.products.length = 0;
+    this.sprints.length = 0;
+    this.role1.length = 0;
+    this.role2.length = 0;
+    this.role3.length = 0;
   }
 }

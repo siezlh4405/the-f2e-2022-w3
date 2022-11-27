@@ -10,6 +10,15 @@
   background-color: $background-color;
   overflow: hidden;
 
+  &__reset-btn {
+    position: absolute;
+    top: 7.2rem;
+    right: 9.5rem;
+    min-width: 12rem !important;
+    height: 6.4rem !important;
+    padding: 1.6rem 2rem;
+  }
+
   &__container {
     position: relative;
     width: 100%;
@@ -28,11 +37,27 @@
     height: 4rem;
     background-image: url('../../../assets/images/back.png');
     background-size: 100%;
+    cursor: pointer;
   }
 
   &__h3 {
     margin-top: 3rem;
     @include h3();
+  }
+
+
+  &__user-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  &__user {
+    &:not(:last-child) {
+      margin-right: 3.7rem;
+    }
   }
 }
 
@@ -82,6 +107,13 @@
     margin-bottom: 3.2rem;
     border-radius: 1rem;
     background-color: $color-white;
+    cursor: pointer;
+
+    &_pass {
+      background-color: $color-gray-light2;
+      border: 3px solid $color-gray-dark1;
+      pointer-events: none;
+    }
   }
 
   &__lock {
@@ -93,6 +125,10 @@
 
   &__text {
     @include h4();
+  }
+
+  &__question_pass &__text {
+    color: $color-gray-dark1;
   }
 
   &__triangle {
@@ -127,6 +163,8 @@
   &_lock &__question {
     border: 3px solid $color-gray-light4;
     background-color: $color-gray-light3;
+    cursor: default;
+    pointer-events: none;
   }
 
   &_lock &__text {
@@ -139,5 +177,13 @@
     &:after {
       border-color: transparent transparent $color-gray-light3 transparent;
     }
+  }
+
+  &__pass-icon {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    background-image: url('../../../assets/images/pass.png');
+    background-size: 100%;
   }
 }

@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-scrum-member',
@@ -17,7 +18,9 @@ export class ScrumMemberComponent implements OnInit {
   isTestPassed = false;
   step = 1;
 
-  constructor(){ }
+  constructor(
+    private cookieService: CookieService,
+  ){ }
 
   ngOnInit(): void {
   }
@@ -45,6 +48,7 @@ export class ScrumMemberComponent implements OnInit {
 
         if (this.isTestPassed) {
           this.isShowPassedPopup = true;
+          this.cookieService.set('level', '3');
         }
       }
     } else {
@@ -58,5 +62,15 @@ export class ScrumMemberComponent implements OnInit {
     }
 
     return false;
+  }
+
+  goToReview(): void {
+    this.isShowErrorPopup = false;
+    this.isTesting = false;
+    this.scrumDragQuestions = ['主導團隊的流程，提升團隊效率，系統性的執行任務，扮演團隊中的潤滑劑。', '負責開發產品，是任務的執行端。', '負責幫助團隊了解目標、安排Product Backlog任務優先度，並且專注於客戶需求。'];
+    this.pdAnswer.length = 0;
+    this.smAnswer.length = 0;
+    this.dvAnswer.length = 0;
+    this.step = 1;
   }
 }

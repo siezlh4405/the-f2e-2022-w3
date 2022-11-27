@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +16,9 @@ export class ScrumToolComponent implements OnInit {
   isShowPassedPopup = false;
   isTestPassed = false;
 
-  constructor() { }
+  constructor(
+    private cookieService: CookieService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -43,6 +46,7 @@ export class ScrumToolComponent implements OnInit {
 
         if (this.isTestPassed) {
           this.isShowPassedPopup = true;
+          this.cookieService.set('level', '5');
         }
       }
     } else {
@@ -57,5 +61,13 @@ export class ScrumToolComponent implements OnInit {
     }
 
     return false;
+  }
+
+  goToReview(): void {
+    this.isShowErrorPopup = false;
+    this.isTesting = false;
+    this.jiras.length = 0;
+    this.conflueces.length = 0;
+    this.scrumDragQuestions = ['建立Sprint', '撰寫產規格書', '撰寫會議紀錄', '追蹤任務時程'];
   }
 }

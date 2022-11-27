@@ -353,6 +353,33 @@
   &__point-text {
     @include tiny-text();
   }
+
+  &__point-box {
+    @include tiny-text();
+
+    position: absolute;
+    bottom: 2.4rem;
+    left: 1.6rem;
+    width: 43rem;
+    height: 10rem;
+    padding: .8rem;
+    line-height: 160%;
+    border-radius: 8px;
+    color: $color-gray-light2;
+    background-color: $color-black-dark2;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s;
+  }
+
+  &__point:hover &__point-box {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__point-box-ul {
+    padding-left: 2rem
+  }
 }
 
 .card2 {
@@ -484,6 +511,14 @@
     background-size: 100% 100%;
   }
 
+  &__exclamation {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    background-image: url('../images/exclamation-point.png');
+    background-size: 100% 100%;
+  }
+
   &__pass {
     display: block;
     width: 4rem;
@@ -612,4 +647,8 @@
   100% {
     transform: scale(1);
   }
+}
+
+.mat-tooltip  {
+  white-space: pre-line !important;
 }

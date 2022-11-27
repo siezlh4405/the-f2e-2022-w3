@@ -1,39 +1,75 @@
 <div class="level">
-  <a class="level__backto"></a>
+  <a class="level__reset-btn btn btn_secondary btn_test" *ngIf="step > 4" (click)="resetLevel()" [routerLink]="['/']">重新開始</a>
+  <a class="level__backto" (click)="isShowErrorPopup = true"></a>
   <div class="level__container">
-    <h3 class="level__h3">新手你好，請選擇想挑戰的關卡</h3>
-    <div class="step step_1" [class.step_lock]="false">
-      <img class="step__user" src="../../../assets/images/user1.png" alt="user">
-      <div class="step__question">
+    <h3 class="level__h3" *ngIf="step === 1">{{title}}你好，請選擇想挑戰的關卡</h3>
+    <h3 class="level__h3" *ngIf="step === 2 || step === 3">請繼續挑戰接下來的關卡！</h3>
+    <h3 class="level__h3" *ngIf="step === 4">加油！剩最後一關了</h3>
+    <h3 class="level__h3" *ngIf="step > 4">恭喜勇者，挑戰成功！一起加入Scrum的行列吧</h3>
+    <div class="level__user-box" *ngIf="step > 4">
+      <img class="level__user" src="../../../assets/images/user1.png" alt="user">
+      <img class="level__user" src="../../../assets/images/user2.png" alt="user">
+      <img class="level__user" src="../../../assets/images/user3.png" alt="user">
+      <img class="level__user" src="../../../assets/images/user4.png" alt="user">
+    </div>
+    <div class="step step_1">
+      <img class="step__user" [hidden]="!(step === 1)" src="../../../assets/images/user1.png" alt="user">
+      <div class="step__question" [class.step__question_pass]="step > 1" [routerLink]="['/step1']">
         <p class="step__text">什麼是Scrum</p>
         <img class="step__lock" src="../../../assets/images/lock.png" alt="lock">
       </div>
-      <i class="step__triangle"></i>
+      <ng-container *ngIf="step === 1; else passTemp">
+        <i class="step__triangle"></i>
+      </ng-container>
     </div>
-    <div class="step step_2" [class.step_lock]="true">
-      <img class="step__user" src="../../../assets/images/user2.png" alt="user">
-      <div class="step__question">
+    <div class="step step_2" [class.step_lock]="step < 2">
+      <img class="step__user" [hidden]="!(step === 2)" src="../../../assets/images/user2.png" alt="user">
+      <div class="step__question" [class.step__question_pass]="step > 2" [routerLink]="['/step2']">
         <p class="step__text">Scrum的成員</p>
         <img class="step__lock" src="../../../assets/images/lock.png" alt="lock">
       </div>
-      <i class="step__triangle"></i>
+      <ng-container *ngIf="step < 3; else passTemp">
+        <i class="step__triangle"></i>
+      </ng-container>
     </div>
-    <div class="step step_3" [class.step_lock]="true">
-      <img class="step__user" src="../../../assets/images/user3.png" alt="user">
-      <div class="step__question">
+    <div class="step step_3" [class.step_lock]="step < 3">
+      <img class="step__user" [hidden]="!(step === 3)" src="../../../assets/images/user3.png" alt="user">
+      <div class="step__question" [class.step__question_pass]="step > 3" [routerLink]="['/step3']">
         <p class="step__text">Scrum如何運作</p>
         <img class="step__lock" src="../../../assets/images/lock.png" alt="lock">
       </div>
-      <i class="step__triangle"></i>
+      <ng-container *ngIf="step < 4; else passTemp">
+        <i class="step__triangle"></i>
+      </ng-container>
     </div>
-    <div class="step step_4" [class.step_lock]="true">
-      <img class="step__user" src="../../../assets/images/user4.png" alt="user">
-      <div class="step__question">
+    <div class="step step_4" [class.step_lock]="step < 4">
+      <img class="step__user" [hidden]="!(step === 4)" src="../../../assets/images/user4.png" alt="user">
+      <div class="step__question" [class.step__question_pass]="step > 4" [routerLink]="['/step4']">
         <p class="step__text">Scrum如何運作</p>
         <img class="step__lock" src="../../../assets/images/lock.png" alt="lock">
       </div>
-      <i class="step__triangle"></i>
+      <ng-container *ngIf="step < 5; else passTemp">
+        <i class="step__triangle"></i>
+      </ng-container>
     </div>
   </div>
   <!-- <img class="level__bakcground" src="../../../assets/images/bgmountain.png" alt="background mountain"> -->
+</div>
+
+<ng-template #passTemp>
+  <i class="step__pass-icon"></i>
+</ng-template>
+
+<div class="popup" [class.popup_show]="isShowErrorPopup">
+  <div class="popup__container" [class.popup_show-animation]="isShowErrorPopup">
+    <i class="popup__exclamation"></i>
+    <div class="popup__text-box">
+      <p class="popup__title">確定離開</p>
+      <p class="popup__sub-title">退出將遺失當前所有紀錄！</p>
+    </div>
+    <div class="popup__footer">
+      <a class="btn btn_popup" (click)="isShowErrorPopup = false">我在想想</a>
+      <a class="btn btn_secondary btn_popup" (click)="resetLevel()" [routerLink]="['/']">我不當勇者了</a>
+    </div>
+  </div>
 </div>

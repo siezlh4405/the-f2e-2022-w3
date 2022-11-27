@@ -6,7 +6,7 @@
     </ng-container>
     <ng-template #testingHeader>
       <h3 class="scrum__h3">小測驗</h3>
-      <a class="btn btn_secondary btn_test" *ngIf="isTestPassed" [class.popup_pass-animation]="isTestPassed">前往下一關</a>
+      <a class="btn btn_secondary btn_test" *ngIf="isTestPassed" [class.popup_pass-animation]="isTestPassed" [routerLink]="['/level']">前往下一關</a>
     </ng-template>
   </div>
   <div class="scrum__container" cdkDropListGroup>
@@ -225,7 +225,7 @@
       <p class="popup__sub-title">再仔細想想答案是什麼</p>
     </div>
     <div class="popup__footer">
-      <a class="btn btn_popup" (click)="isShowErrorPopup = false; isTesting = false">返回複習</a>
+      <a class="btn btn_popup" (click)="goToReview()">返回複習</a>
       <a class="btn btn_secondary btn_popup" (click)="isShowErrorPopup = false">再次嘗試</a>
     </div>
   </div>
@@ -239,7 +239,7 @@
     </div>
     <div class="popup__footer">
       <a class="btn btn_popup" (click)="isShowPassedPopup = false">關閉視窗</a>
-      <a class="btn btn_secondary btn_popup">下一關</a>
+      <a class="btn btn_secondary btn_popup" [routerLink]="['/level']">下一關</a>
     </div>
   </div>
 </div>

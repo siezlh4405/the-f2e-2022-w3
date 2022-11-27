@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: 'level', component: LevelPageComponent },
   { path: 'step1', component: ScrumTestComponent },
   { path: 'step2', component: ScrumTestComponent },
+  { path: 'step3', component: ScrumTestComponent },
+  { path: 'step4', component: ScrumTestComponent },
 ];
 
 @NgModule({

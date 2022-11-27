@@ -1,15 +1,28 @@
 <div class="test">
-  <a class="test__leave"></a>
+  <a class="test__leave" (click)="isShowErrorPopup = true"></a>
   <div class="test__header">
     <div class="process">
       <div class="process__item process__item_fill"></div>
-      <div class="process__item"></div>
-      <div class="process__item"></div>
-      <div class="process__item"></div>
+      <div class="process__item" [class.process__item_fill]="step > 1"></div>
+      <div class="process__item" [class.process__item_fill]="step > 2"></div>
+      <div class="process__item" [class.process__item_fill]="step > 3"></div>
     </div>
   </div>
-  <!-- <app-scrum-intro></app-scrum-intro> -->
-  <!-- <app-scrum-member></app-scrum-member> -->
-  <app-scrum-work></app-scrum-work>
-  <!-- <app-scrum-tool></app-scrum-tool> -->
+  <app-scrum-intro *ngIf="step === 1"></app-scrum-intro>
+  <app-scrum-member *ngIf="step === 2"></app-scrum-member>
+  <app-scrum-work  *ngIf="step === 3"></app-scrum-work>
+  <app-scrum-tool  *ngIf="step === 4"></app-scrum-tool>
+</div>
+<div class="popup" [class.popup_show]="isShowErrorPopup">
+  <div class="popup__container" [class.popup_show-animation]="isShowErrorPopup">
+    <i class="popup__exclamation"></i>
+    <div class="popup__text-box">
+      <p class="popup__title">確定離開</p>
+      <p class="popup__sub-title">退出將遺失當前所有紀錄！</p>
+    </div>
+    <div class="popup__footer">
+      <a class="btn btn_popup" (click)="isShowErrorPopup = false">我在想想</a>
+      <a class="btn btn_secondary btn_popup" (click)="resetLevel()" [routerLink]="['/']">我不當勇者了</a>
+    </div>
+  </div>
 </div>
