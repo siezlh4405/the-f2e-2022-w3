@@ -1,8 +1,0 @@
-@import '../../../assets/styles/variable';
-@import '../../../assets/styles/mixins';
-@import '../../../assets/styles/components';
-
-::ng-deep .material-tooltip {
-  white-space: pre-line;
-  max-width: 500px !important;
-}
