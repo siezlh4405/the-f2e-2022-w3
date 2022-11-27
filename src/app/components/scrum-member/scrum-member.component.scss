@@ -73,11 +73,7 @@ $user-width: 19.3rem;
   }
 
   &__photo {
-    @include regular-border();
-
-    width: 12.5rem;
-    height: 12.5rem;
-    border-radius: 50%;
+    @include user-photo();
   }
 
   &__item:nth-child(even) &__user {
@@ -109,4 +105,11 @@ $user-width: 19.3rem;
   &__sub-title {
     @include small-title();
   }
+}
+
+.member-card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2.4rem;
 }

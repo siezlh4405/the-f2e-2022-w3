@@ -2,22 +2,20 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-scrum-member',
-  templateUrl: './scrum-member.component.html',
-  styleUrls: ['./scrum-member.component.scss']
+  selector: 'app-scrum-tool',
+  templateUrl: './scrum-tool.component.html',
+  styleUrls: ['./scrum-tool.component.scss']
 })
-export class ScrumMemberComponent implements OnInit {
-  scrumDragQuestions: string[] = ['主導團隊的流程，提升團隊效率，系統性的執行任務，扮演團隊中的潤滑劑。', '負責開發產品，是任務的執行端。', '負責幫助團隊了解目標、安排Product Backlog任務優先度，並且專注於客戶需求。'];
-  pdAnswer: string[] = [];
-  smAnswer: string[] = [];
-  dvAnswer: string[] = [];
+export class ScrumToolComponent implements OnInit {
+  scrumDragQuestions: string[] = ['建立Sprint', '撰寫產規格書', '撰寫會議紀錄', '追蹤任務時程'];
+  jiras: string[] = [];
+  conflueces: string[] = [];
   isShowErrorPopup = false;
   isTesting = false;
   isShowPassedPopup = false;
   isTestPassed = false;
-  step = 1;
 
-  constructor(){ }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -33,10 +31,10 @@ export class ScrumMemberComponent implements OnInit {
     }
   }
 
-  dropToAnswer(event: CdkDragDrop<string[]>, text: string) {
+  dropToAnswer(event: CdkDragDrop<string[]>, texts: string[]) {
     console.log(event.item.data);
 
-    if (event.item.data === text) {
+    if (texts.indexOf(event.item.data) !== -1) {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       } else {
@@ -52,8 +50,9 @@ export class ScrumMemberComponent implements OnInit {
     }
   }
 
+
   checkIsPassed(): boolean {
-    if (this.pdAnswer.length === 1 && this.smAnswer.length === 1 && this.dvAnswer.length === 1) {
+    if (this.jiras.length === 2 && this.conflueces.length === 2) {
       return true;
     }
 

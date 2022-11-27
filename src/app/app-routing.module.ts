@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: IntroComponent },
   { path: 'level', component: LevelPageComponent },
   { path: 'step1', component: ScrumTestComponent },
+  { path: 'step2', component: ScrumTestComponent },
 ];
 
 @NgModule({

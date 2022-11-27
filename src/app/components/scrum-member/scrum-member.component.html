@@ -1,13 +1,24 @@
 <div class="scrum">
   <div class="scrum__header">
-    <ng-container>
+    <ng-container *ngIf="step === 1">
       <h3 class="scrum__h3">Scrum的成員</h3>
-      <a class="btn btn_secondary btn_test">下一頁</a>
+      <a class="btn btn_secondary btn_test" (click)="step = step + 1">下一頁</a>
+    </ng-container>
+    <ng-container *ngIf="step === 2">
+      <h3 class="scrum__h3">以情境舉例</h3>
+      <div class="scrum__btn-group">
+        <a class="btn btn_ghost btn_test" (click)="step = step - 1">上一頁</a>
+        <a class="btn btn_secondary btn_test" (click)="isTesting = true; step = step + 1">準備好測驗了</a>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isTesting">
+      <h3 class="scrum__h3">小測驗</h3>
+      <a class="btn btn_secondary btn_test" *ngIf="isTestPassed" [class.popup_pass-animation]="isTestPassed">前往下一關</a>
     </ng-container>
   </div>
 </div>
-<div class="scrum__container">
-  <div class="member-conversation scrum__margin-top">
+<div class="scrum__container" cdkDropListGroup>
+  <div class="member-conversation scrum__margin-top" *ngIf="step === 1">
     <div class="member-conversation__item">
       <div class="member-conversation__user">
         <img class="member-conversation__photo" src="../../../assets/images/scrum-user1.png" alt="user1">
@@ -37,6 +48,99 @@
       <div class="member-conversation__dialog">
         <p class="member-conversation__dialog-text">我負責開發產品，是任務的執行端。</p>
       </div>
+    </div>
+  </div>
+  <div class="description scrum__margin-top" *ngIf="step === 2">
+    <p class="description__text">從前有個遠洋捕魚團隊，需要在1週之內把捕到的魚獲全數賣出，此外，各種魚類的市場行情、腐壞速度快慢不一，販賣地點有諸多漁獲市場可以選擇，賣魚路上還設有重重路障，魚獲可不是說賣就賣，此時團隊面臨重重的抉擇，大家討論後決定開始分配任務....</p>
+    <p class="description__text">小明負責決定魚獲將賣到哪些地方，並且安排魚類販售的優先順序；而小美熟門熟路，不僅知道走哪些路線最快，還知道該如何避開路障或清除路障關卡；小王是唯一有駕照的人，由他負責開車把這些新鮮的漁獲載到市場販售。</p>
+  </div>
+  <div class="member-card" *ngIf="step === 2">
+    <div class="card2">
+      <img class="card2__photo" src="../../../assets/images/scrum-user1.png" alt="user1">
+      <p class="card2__sub-title">小明</p>
+      <p class="card2__title">Product Owner</p>
+      <p class="card2__small-title">產品負責人 (PO)</p>
+      <p class="card2__content">負責決定販售的地點，並安排販售漁獲的優先程度，是團隊中的規劃者</p>
+    </div>
+    <div class="card2">
+      <img class="card2__photo" src="../../../assets/images/scrum-user2.png" alt="user1">
+      <p class="card2__sub-title">小美</p>
+      <p class="card2__title">Scrum Master</p>
+      <p class="card2__small-title">(SM)</p>
+      <p class="card2__content">透過豐富經驗提高賣魚的效率，使任務執行上更加順暢，是團隊中的協助者</p>
+    </div>
+    <div class="card2">
+      <img class="card2__photo" src="../../../assets/images/scrum-user3.png" alt="user1">
+      <p class="card2__sub-title">小王</p>
+      <p class="card2__title">Development Team</p>
+      <p class="card2__small-title">開發團隊 (DV)</p>
+      <p class="card2__content">將漁獲載到市場出售，完成任務目標，是團隊中的執行者</p>
+    </div>
+  </div>
+  <div class="scrum-drag" *ngIf="isTesting">
+    <p class="scrum-drag__text">請將以下選項拖曳至正確的框內</p>
+    <div class="scrum-drag__box scrum-drag__box_vertical" cdkDropList [cdkDropListData]="scrumDragQuestions" (cdkDropListDropped)="drop($event)">
+      <div class="drag-card drag-card_vertical" cdkDrag [cdkDragData]="scrumDragQuestion" *ngFor="let scrumDragQuestion of scrumDragQuestions">
+        <p class="drag-card__text">{{scrumDragQuestion}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="member-card" *ngIf="isTesting">
+    <div class="card2 card2_transparent">
+      <img class="card2__photo" src="../../../assets/images/scrum-user1.png" alt="user1">
+      <p class="card2__title card2__title_bold">Product Owner</p>
+      <p class="card2__small-title card2__small-title_bold">產品負責人 (PO)</p>
+      <div class="card2__drag-box" cdkDropList [cdkDropListData]="pdAnswer" (cdkDropListDropped)="dropToAnswer($event, '負責幫助團隊了解目標、安排Product Backlog任務優先度，並且專注於客戶需求。')">
+        <div class="drag-card" cdkDrag [cdkDragData]="pd" *ngFor="let pd of pdAnswer">
+          <p class="drag-card__text">{{pd}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card2 card2_transparent">
+      <img class="card2__photo" src="../../../assets/images/scrum-user2.png" alt="user2">
+      <p class="card2__title card2__title_bold">Scrum Master</p>
+      <p class="card2__small-title ard2__small-title_bold">(SM)</p>
+      <div class="card2__drag-box" cdkDropList [cdkDropListData]="smAnswer" (cdkDropListDropped)="dropToAnswer($event, '主導團隊的流程，提升團隊效率，系統性的執行任務，扮演團隊中的潤滑劑。')">
+        <div class="drag-card" cdkDrag [cdkDragData]="sm" *ngFor="let sm of smAnswer">
+          <p class="drag-card__text">{{sm}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card2 card2_transparent">
+      <img class="card2__photo" src="../../../assets/images/scrum-user3.png" alt="user3">
+      <p class="card2__title card2__title_bold">Development Team</p>
+      <p class="card2__small-title ard2__small-title_bold">開發團隊 (DV)</p>
+      <div class="card2__drag-box" cdkDropList [cdkDropListData]="dvAnswer" (cdkDropListDropped)="dropToAnswer($event, '負責開發產品，是任務的執行端。')">
+        <div class="drag-card" cdkDrag [cdkDragData]="dv" *ngFor="let dv of dvAnswer">
+          <p class="drag-card__text">{{dv}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" [class.popup_show]="isShowErrorPopup">
+  <div class="popup__container" [class.popup_show-animation]="isShowErrorPopup">
+    <i class="popup__error"></i>
+    <div class="popup__text-box">
+      <p class="popup__title">Opps! 答錯了</p>
+      <p class="popup__sub-title">再仔細想想答案是什麼</p>
+    </div>
+    <div class="popup__footer">
+      <a class="btn btn_popup" (click)="isShowErrorPopup = false; isTesting = false">返回複習</a>
+      <a class="btn btn_secondary btn_popup" (click)="isShowErrorPopup = false">再次嘗試</a>
+    </div>
+  </div>
+</div>
+<div class="popup" [class.popup_show]="isShowPassedPopup">
+  <div class="popup__container" [class.popup_show-animation]="isShowPassedPopup">
+    <i class="popup__pass"></i>
+    <div class="popup__text-box">
+      <p class="popup__title">恭喜你！</p>
+      <p class="popup__sub-title">完成測驗挑戰</p>
+    </div>
+    <div class="popup__footer">
+      <a class="btn btn_popup" (click)="isShowPassedPopup = false">關閉視窗</a>
+      <a class="btn btn_secondary btn_popup">下一關</a>
     </div>
   </div>
 </div>

@@ -45,6 +45,21 @@
   color: $color-black-dark;;
 }
 
+@mixin tiny-text {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 180%;
+  color: $color-gray-dark1;
+}
+
 @mixin regular-border {
   border: 3px solid $color-black-dark;
+}
+
+@mixin user-photo {
+  @include regular-border();
+
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 50%;
 }

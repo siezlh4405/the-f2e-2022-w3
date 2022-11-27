@@ -6,7 +6,7 @@
     </ng-container>
     <ng-template #testingHeader>
       <h3 class="scrum__h3">小測驗</h3>
-      <a class="btn btn_secondary btn_test" *ngIf="isTesting" [class.btn_disabled]="!this.isTestPassed" [class.popup_pass-animation]="this.isTestPassed">前往下一關</a>
+      <a class="btn btn_secondary btn_test" *ngIf="isTestPassed" [class.popup_pass-animation]="isTestPassed">前往下一關</a>
     </ng-template>
   </div>
   <div class="scrum__container" cdkDropListGroup>
@@ -36,7 +36,9 @@
           <p class="card1__sub-title">Product Backlog</p>
           <a class="btn btn_ghost" *ngIf="!isReadIntroStatus[0];else productIntro" (click)="setIsReadStatus(0)">了解更多</a>
           <ng-template #productIntro>
-            <p class="card1__mark-title">指整個團隊代辦事項的清單</p>
+            <div class="card1__mark-box">
+              <p class="card1__mark-title">指整個團隊代辦事項的清單</p>
+            </div>
             <ul class="card1__ul">
               <li class="card1__li">
                 <i class="card1__list-style"></i>
@@ -58,7 +60,9 @@
           <p class="card1__sub-title">Sprint</p>
           <a class="btn btn_ghost" *ngIf="!isReadIntroStatus[1];else sprintIntro" (click)="setIsReadStatus(1)">了解更多</a>
           <ng-template #sprintIntro>
-            <p class="card1__mark-title">短期且固定時間內，完成交付的任務</p>
+            <div class="card1__mark-box">
+              <p class="card1__mark-title">短期且固定時間內，完成交付的任務</p>
+            </div>
             <ul class="card1__ul">
               <li class="card1__li">
                 <i class="card1__list-style"></i>
@@ -80,7 +84,9 @@
           <p class="card1__sub-title">Roles</p>
           <a class="btn btn_ghost" *ngIf="!isReadIntroStatus[2];else roleIntro" (click)="setIsReadStatus(2)">了解更多</a>
           <ng-template #roleIntro>
-            <p class="card1__mark-title">Scrum團隊裡所需的職位</p>
+            <div class="card1__mark-box">
+              <p class="card1__mark-title">Scrum團隊裡所需的職位</p>
+            </div>
             <ul class="card1__ul">
               <li class="card1__li card1__li_no-margin">
                 <i class="card1__list-style"></i>

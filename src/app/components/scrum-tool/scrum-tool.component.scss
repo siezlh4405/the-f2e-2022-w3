@@ -1,0 +1,95 @@
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/components';
+
+.tool {
+  width: 100%;
+  margin-bottom: 2.5rem;
+
+  &__logo {
+    margin-bottom: 1.2rem;
+  }
+
+  &__sub-title {
+    @include sub-title();
+    margin-bottom: 1.2rem;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__info-item {
+    width: 39.7rem;
+  }
+
+  &__photo-box {
+    @include regular-border();
+    position: relative;
+    border-radius: 1rem;
+    background-color: $color-white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 39.7rem;
+    height: 20rem;
+    margin-bottom: .5rem;
+  }
+
+  &__info-photo {
+    width: 100%;
+
+    &_absolute {
+      position: absolute;
+      top: 0;
+    }
+
+    &_tracking {
+      position: absolute;
+      top: -7.1rem;
+    }
+  }
+
+  &__info-title {
+    @include title();
+    color: $color-black-dark;
+    text-align: center;
+  }
+}
+
+.tool-testing {
+  display: flex;
+  width: 100%;
+  margin-top: 3.2rem;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+
+    &:not(:last-child) {
+      margin-right: 2.4rem;
+    }
+
+  }
+
+  &__logo {
+    margin-bottom: 1.2rem;
+  }
+
+  &__drag-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    min-height: 13.6rem;
+    background: $color-blue-dark1;
+    border-radius: 8px;
+  }
+}

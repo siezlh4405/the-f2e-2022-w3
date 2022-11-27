@@ -15,8 +15,10 @@
   @include h4();
 
   &_test {
-    width: 16.4rem;
+    min-width: 16.4rem;
+    width: fit-content;
     height: 6.4rem;
+    padding: 1.6rem 2rem;
 
     @include sub-title();
   }
@@ -55,6 +57,28 @@
   }
 }
 
+.information {
+  width: 100%;
+
+  &_margin-top-m {
+    margin-top: 3.2rem !important;
+  }
+
+  &__title {
+    @include title();
+
+    color: $color-black-dark;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+  }
+}
+
 .tab-intro {
   width: 100%;
   margin-bottom: 2.3rem;
@@ -71,6 +95,15 @@
   &__title {
     letter-spacing: .1rem;
     @include title();
+  }
+
+  &__sub-title {
+    @include title();
+
+    margin-bottom: .5rem;
+    letter-spacing: .1rem;
+    font-weight: 700;
+    color: $color-black-dark;
   }
 
   &__content {
@@ -103,22 +136,59 @@
 
   &__container {
     width: 100%;
+    padding-bottom: 5rem;
+
+    &_scroll {
+      max-height: calc(100vh - 20rem);
+      overflow-y: auto;
+      padding-right: 1rem;
+      margin-top: 3rem;
+    }
   }
 
   &__margin-top {
     margin-top: 3.6rem;
+  }
+
+  &__btn-group {
+    display: flex;
+
+    & .btn:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+.description {
+  @include regular-border();
+  width: 100%;
+  padding: 3.2rem 1.8rem;
+  background-color: $color-blue-dark1;
+
+  &__text {
+    @include sub-title();
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
   }
 }
 
 .card1 {
   @include regular-border();
 
+  position: relative;
   width: 39.7rem;
   min-height: 39rem;
   padding: 2.4rem 2.4rem 1rem 2.4rem;
   border-radius: 8px;
   box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85);
   background-color: $color-blue-dark1;
+
+  &_small {
+    width: 30rem;
+    height: 30rem;
+  }
 
   &:not(:last-child) {
     margin-right: 2.4rem;
@@ -141,25 +211,55 @@
     text-align: center;
   }
 
-  &__mark-title {
-    @include sub-title();
+  &__mark-box {
     @include regular-border();
 
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     min-height: 4.8rem;
     margin-top: -2.9rem;
     border-radius: 8px;
     text-align: center;
     background: $color-white;
+
+    &:first-child {
+      margin-top: 0;
+      padding: .8rem 0;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  &__mark-title {
+    @include sub-title();
+
+    &_bold {
+      font-weight: 700;
+    }
+  }
+
+  &__mark-small-title {
+    @include small-title();
+
+    &_bold {
+      font-weight: 700;
+    }
   }
 
   &__ul {
     list-style-type: none;
     padding: 0 3.8rem;
     margin-top: 1.6rem;
+
+    &_no-padding {
+      padding: 0;
+    }
+
+    &_no-margin-top {
+      margin-top: 0;
+    }
   }
 
   &__li {
@@ -189,6 +289,12 @@
 
     &_hidden {
       visibility: hidden;
+    }
+
+    &_small {
+      min-width: .4rem;
+      width: .4rem;
+      height: .4rem;
     }
   }
 
@@ -226,7 +332,102 @@
     padding: 0;
     margin-top: .8rem;
   }
+
+  &__point {
+    position: absolute;
+    left: 0;
+    bottom: -3.4rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__point-icon {
+    display: block;
+    width: 1.28rem;
+    height: 1.28rem;
+    background-image: url('../images/tips.png');
+    background-size: 100%;
+    margin-right: .5rem;
+  }
+
+  &__point-text {
+    @include tiny-text();
+  }
 }
+
+.card2 {
+  @include regular-border();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 39.7rem;
+  min-height: 38.4rem;
+  padding: 2.4rem 2.4rem 1rem 2.4rem;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.85);
+  background-color: $color-white;
+
+  &_transparent {
+    padding: 0;
+    border: 3px solid transparent;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  &:not(:last-child) {
+    margin-right: 2.4rem;
+  }
+
+  &__photo {
+    @include user-photo();
+
+    margin-bottom: 2.5rem;
+  }
+
+  &__title {
+    @include title();
+
+    color: $color-black-dark;
+
+    &_bold {
+      font-weight: 700;
+    }
+  }
+
+  &__sub-title {
+    @include sub-title();
+  }
+
+  &__small-title {
+    @include small-title();
+
+    margin-bottom: 2.5rem;
+
+    &_bold {
+      font-weight: 700;
+    }
+  }
+
+  &__content {
+    @include sub-title();
+
+    text-align: center;
+  }
+
+  &__drag-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    min-height: 13.6rem;
+    background: $color-blue-dark1;
+    border-radius: 8px;
+  }
+}
+
+
 .popup {
   position: fixed;
   top: 0;
@@ -315,6 +516,72 @@
     align-items: center;
     justify-content: space-between;
   }
+}
+
+.scrum-drag {
+  width: 100%;
+
+  &__text {
+    @include sub-title();
+
+    margin-bottom: 1.2rem;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 8.4rem;
+    padding: 1.6rem;
+    border-radius: 8px;
+    background-color: $color-gray-light4;
+
+    &_vertical {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.drag-card {
+  padding: .8rem;
+  border: 2px solid $color-black-dark;
+  border-radius: 8px;
+  background-color: $color-white;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &__text {
+    @include sub-title();
+  }
+
+  &_vertical:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.scrum-drag__box.cdk-drop-list-dragging .drag-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 @keyframes background-show {
