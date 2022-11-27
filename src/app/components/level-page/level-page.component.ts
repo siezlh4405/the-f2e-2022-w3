@@ -24,7 +24,8 @@ export class LevelPageComponent implements OnInit {
     }
 
     if (this.step === 0) {
-      this.resetLevel();
+      this.cookieService.set('level', '1');
+      this.step = 1;
     }
   }
 
